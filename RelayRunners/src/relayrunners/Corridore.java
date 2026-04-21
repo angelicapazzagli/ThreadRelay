@@ -17,4 +17,16 @@ public class Corridore extends Thread{
         this.testimone = testimone;
     }
     
+    @Override
+    public void run() {
+        try {
+            testimone.corri();
+            System.out.println(getName() + " è in corsa");
+            Thread.sleep(2000);
+            testimone.passa();
+        } catch (InterruptedException ex) {
+            System.getLogger(Corridore.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+        
+    }
 }
