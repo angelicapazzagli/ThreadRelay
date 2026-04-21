@@ -11,18 +11,18 @@ package relayrunners;
 public class Testimone {
     private boolean inCorsa;
     
-    public synchronized void corri() throws InterruptedException {
+    public synchronized void corri(String nome) throws InterruptedException {
         while(inCorsa) {
-            System.out.println("Attesa testimone");
+            System.out.println(nome + " Attesa testimone");
             wait();
         }
         inCorsa = true;
-        System.out.println("Entrata in corsa");
+        System.out.println(nome + " Entrata in corsa");
     }
     
-    public synchronized void passa() {
+    public synchronized void passa(String nome) {
         inCorsa = false;
-        System.out.println("Passaggio testimone");
+        System.out.println(nome + " Passaggio testimone");
         notifyAll();
     }
 }

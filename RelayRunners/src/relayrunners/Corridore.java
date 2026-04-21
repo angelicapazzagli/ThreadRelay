@@ -20,10 +20,10 @@ public class Corridore extends Thread{
     @Override
     public void run() {
         try {
-            testimone.corri();
-            System.out.println(getName() + " è in corsa");
+            testimone.corri(nome);
+            System.out.println(nome + " In corsa");
             Thread.sleep(2000);
-            testimone.passa();
+            testimone.passa(nome);
         } catch (InterruptedException ex) {
             System.getLogger(Corridore.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
