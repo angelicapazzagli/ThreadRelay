@@ -9,20 +9,19 @@ package relayrunners;
  * @author PAZZAGLI.ANGELICA
  */
 public class Testimone {
-    private boolean inCorsa;
+    private int turno = 1;
     
-    public synchronized void corri(String nome) throws InterruptedException {
-        while(inCorsa) {
+    public synchronized void corri(String nome, int numero) throws InterruptedException {
+        while(numero != turno) {
             System.out.println(nome + " Attesa testimone");
             wait();
         }
-        inCorsa = true;
         System.out.println(nome + " Entrata in corsa");
     }
     
     public synchronized void passa(String nome) {
-        inCorsa = false;
         System.out.println(nome + " Passaggio testimone");
+        turno++;
         notifyAll();
     }
 }

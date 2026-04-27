@@ -10,17 +10,19 @@ package relayrunners;
  */
 public class Corridore extends Thread{
     private String nome;
+    private int numero;
     private Testimone testimone;
     
-    public Corridore(String nome, Testimone testimone) {
+    public Corridore(String nome, int numero, Testimone testimone) {
         this.nome = nome;
+        this.numero = numero;
         this.testimone = testimone;
     }
     
     @Override
     public void run() {
         try {
-            testimone.corri(nome);
+            testimone.corri(nome, numero);
             System.out.println(nome + " In corsa");
             Thread.sleep(2000);
             testimone.passa(nome);

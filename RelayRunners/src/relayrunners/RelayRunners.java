@@ -17,10 +17,10 @@ public class RelayRunners {
     public static void main(String[] args) {
         Testimone testimone = new Testimone();
         
-        Corridore c1 = new Corridore("Angelica", testimone);
-        Corridore c2 = new Corridore("Rachele", testimone);
-        Corridore c3 = new Corridore("Sara", testimone);
-        Corridore c4 = new Corridore("Elena", testimone);
+        Corridore c1 = new Corridore("Angelica", 1, testimone);
+        Corridore c2 = new Corridore("Rachele", 2, testimone);
+        Corridore c3 = new Corridore("Sara", 3, testimone);
+        Corridore c4 = new Corridore("Elena", 4, testimone);
         
         c1.start();
         c2.start();
