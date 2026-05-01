@@ -25,8 +25,15 @@ public class RelayRunners {
         corridori.add(new Corridore("Sara", 3, testimone));
         corridori.add(new Corridore("Elena", 4, testimone));
 
-        GameManager game = new GameManager(testimone, corridori);
+        GameForm form = new GameForm();
+        for (Corridore c : corridori) {
+            c.addObserver(form);
+        }
 
-        game.startRace();
+        GameManager manager = new GameManager(corridori);
+
+        form.setCorridori(corridori);
+        form.setManager(manager);
+        form.setVisible(true);
     }
 }

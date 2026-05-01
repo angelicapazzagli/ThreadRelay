@@ -11,11 +11,9 @@ import java.util.ArrayList;
  * @author 39333
  */
 public class GameManager {
-    private Testimone testimone;
     private ArrayList<Corridore> corridori;
 
-    public GameManager(Testimone testimone, ArrayList<Corridore> corridori) {
-        this.testimone = testimone;
+    public GameManager(ArrayList<Corridore> corridori) {
         this.corridori = corridori;
     }
 

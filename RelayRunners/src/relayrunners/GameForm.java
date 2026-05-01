@@ -4,19 +4,46 @@
  */
 package relayrunners;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author pazzagli.angelica
  */
-public class GameForm extends javax.swing.JFrame {
+public class GameForm extends javax.swing.JFrame implements Observer{
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GameForm.class.getName());
-
+    private ArrayList<Corridore> corridori;
+    private GameManager manager;
     /**
      * Creates new form GameForm
      */
     public GameForm() {
         initComponents();
+    }
+    
+    public void setCorridori(ArrayList<Corridore> corridori) {
+        this.corridori = corridori;
+        lblInfo1.setText(lblInfo1.getText() + ": \n" + corridori.get(0).getNome());
+        lblInfo2.setText(lblInfo2.getText() + ": \n" + corridori.get(1).getNome());
+        lblInfo3.setText(lblInfo3.getText() + ": \n" + corridori.get(2).getNome());
+        lblInfo4.setText(lblInfo4.getText() + ": \n" + corridori.get(3).getNome());
+    }
+
+    public void setManager(GameManager manager) {
+        this.manager = manager;
+    }
+    
+    @Override
+    public void update(int numeroCorridore, int valore) {
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            switch (numeroCorridore) {
+                case 1 -> bar1.setValue(valore);
+                case 2 -> bar2.setValue(valore);
+                case 3 -> bar3.setValue(valore);
+                case 4 -> bar4.setValue(valore);
+            }
+        });
     }
 
     /**
@@ -68,6 +95,7 @@ public class GameForm extends javax.swing.JFrame {
 
         btnAvvia.setFont(new java.awt.Font("Serif", 3, 14)); // NOI18N
         btnAvvia.setText("AVVIA");
+        btnAvvia.addActionListener(this::btnAvviaActionPerformed);
 
         btnSospendi.setFont(new java.awt.Font("Serif", 3, 14)); // NOI18N
         btnSospendi.setText("SOSPENDI");
@@ -162,30 +190,11 @@ public class GameForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void btnAvviaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvviaActionPerformed
+        manager.startRace();
+        btnAvvia.setEnabled(false);
+    }//GEN-LAST:event_btnAvviaActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new GameForm().setVisible(true));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar bar1;

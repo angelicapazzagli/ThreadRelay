@@ -23,6 +23,10 @@ public class Corridore extends Thread implements Subject{
         this.testimone = testimone;
     }
     
+    public String getNome() {
+        return nome;
+    }
+    
     @Override
     public void run() {
         try {
