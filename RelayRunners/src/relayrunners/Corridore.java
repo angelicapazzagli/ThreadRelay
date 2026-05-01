@@ -4,14 +4,18 @@
  */
 package relayrunners;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author PAZZAGLI.ANGELICA
  */
-public class Corridore extends Thread{
+public class Corridore extends Thread implements Subject{
     private String nome;
     private int numero;
     private Testimone testimone;
+    private final ArrayList<Observer> observers = new ArrayList();
+    private volatile int progresso = 0;
     
     public Corridore(String nome, int numero, Testimone testimone) {
         this.nome = nome;
@@ -29,6 +33,30 @@ public class Corridore extends Thread{
         } catch (InterruptedException ex) {
             System.getLogger(Corridore.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
-        
+    }
+    
+    @Override
+    public synchronized void addObserver(Observer o) {
+        if (!observers.contains(o)) {
+            observers.add(o);
+        }
+    }
+
+    @Override
+    public synchronized void removeObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    @Override
+    public synchronized void notifyObservers() {
+        ArrayList<Observer> copia = new ArrayList(observers);
+        for (Observer o : copia) {
+            o.update(numero, progresso);
+        }
+    }
+
+    private void setProgresso(int p) {
+        this.progresso = p;
+        notifyObservers();
     }
 }
