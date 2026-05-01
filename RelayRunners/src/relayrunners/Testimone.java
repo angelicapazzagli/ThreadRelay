@@ -11,16 +11,13 @@ package relayrunners;
 public class Testimone {
     private int turno = 1;
     
-    public synchronized void corri(String nome, int numero) throws InterruptedException {
+    public synchronized void attendiTurno(int numero) throws InterruptedException {
         while(numero != turno) {
-            System.out.println(nome + " Attesa testimone");
             wait();
         }
-        System.out.println(nome + " Entrata in corsa");
     }
     
-    public synchronized void passa(String nome) {
-        System.out.println(nome + " Passaggio testimone");
+    public synchronized void sbloccaSuccessivo() {
         turno++;
         notifyAll();
     }

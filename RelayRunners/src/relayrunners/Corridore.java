@@ -26,12 +26,16 @@ public class Corridore extends Thread implements Subject{
     @Override
     public void run() {
         try {
-            testimone.corri(nome, numero);
-            System.out.println(nome + " In corsa");
-            Thread.sleep(2000);
-            testimone.passa(nome);
+            testimone.attendiTurno(numero);
+            for (int i = 0; i <= 100; i++) {
+                Thread.sleep(50);
+                setProgresso(i);
+                if (i == 90) {
+                    testimone.sbloccaSuccessivo();
+                }
+            }
         } catch (InterruptedException ex) {
-            System.getLogger(Corridore.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            Thread.currentThread().interrupt();
         }
     }
     
