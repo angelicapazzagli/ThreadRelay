@@ -37,6 +37,7 @@ public class Corridore extends Thread implements Subject{
         try {
             testimone.attendiTurno(numero);
             for (int i = 0; i <= 100; i++) {
+                manager.checkPausa();
                 Thread.sleep(manager.getDelay());
                 setProgresso(i);
                 if (i == 90) {

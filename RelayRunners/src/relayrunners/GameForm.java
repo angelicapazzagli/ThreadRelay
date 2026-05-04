@@ -20,6 +20,8 @@ public class GameForm extends javax.swing.JFrame implements Observer{
      */
     public GameForm() {
         initComponents();
+        btnSospendi.setEnabled(false);
+        btnRiprendi.setEnabled(false);
     }
     
     public void setCorridori(ArrayList<Corridore> corridori) {
@@ -99,9 +101,11 @@ public class GameForm extends javax.swing.JFrame implements Observer{
 
         btnSospendi.setFont(new java.awt.Font("Serif", 3, 14)); // NOI18N
         btnSospendi.setText("SOSPENDI");
+        btnSospendi.addActionListener(this::btnSospendiActionPerformed);
 
         btnRiprendi.setFont(new java.awt.Font("Serif", 3, 14)); // NOI18N
         btnRiprendi.setText("RIPRENDI");
+        btnRiprendi.addActionListener(this::btnRiprendiActionPerformed);
 
         btnFerma.setFont(new java.awt.Font("Serif", 3, 14)); // NOI18N
         btnFerma.setText("FERMA");
@@ -195,7 +199,20 @@ public class GameForm extends javax.swing.JFrame implements Observer{
         manager.setVelocità(scelta);
         manager.startRace();
         btnAvvia.setEnabled(false);
+        btnSospendi.setEnabled(true);
     }//GEN-LAST:event_btnAvviaActionPerformed
+
+    private void btnSospendiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSospendiActionPerformed
+        manager.stop();
+        btnSospendi.setEnabled(false);
+        btnRiprendi.setEnabled(true);
+    }//GEN-LAST:event_btnSospendiActionPerformed
+
+    private void btnRiprendiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRiprendiActionPerformed
+        manager.riprendi();
+        btnRiprendi.setEnabled(false);
+        btnSospendi.setEnabled(true);
+    }//GEN-LAST:event_btnRiprendiActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

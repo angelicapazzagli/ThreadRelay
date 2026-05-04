@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class GameManager {
     private ArrayList<Corridore> corridori;
     private Velocità velocità = Velocità.REGULAR;
+    private boolean pausa = false;
 
     public GameManager(ArrayList<Corridore> corridori) {
         this.corridori = corridori;
@@ -48,6 +49,21 @@ public class GameManager {
                 return 20;
             default:
                 return 50;
+        }
+    }
+    
+    public synchronized void stop() {
+        pausa = true;
+    }
+
+    public synchronized void riprendi() {
+        pausa = false;
+        notifyAll();
+    }
+
+    public synchronized void checkPausa() throws InterruptedException {
+        while (pausa) {
+            wait();
         }
     }
 }

@@ -207,6 +207,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="SOSPENDI"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSospendiActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnRiprendi">
           <Properties>
@@ -215,6 +218,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="RIPRENDI"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRiprendiActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnFerma">
           <Properties>
