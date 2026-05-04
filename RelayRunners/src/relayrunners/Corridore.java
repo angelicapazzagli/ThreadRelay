@@ -16,6 +16,11 @@ public class Corridore extends Thread implements Subject{
     private Testimone testimone;
     private final ArrayList<Observer> observers = new ArrayList();
     private volatile int progresso = 0;
+    private GameManager manager;
+
+    public void setManager(GameManager manager) {
+        this.manager = manager;
+    }
     
     public Corridore(String nome, int numero, Testimone testimone) {
         this.nome = nome;
@@ -32,7 +37,7 @@ public class Corridore extends Thread implements Subject{
         try {
             testimone.attendiTurno(numero);
             for (int i = 0; i <= 100; i++) {
-                Thread.sleep(50);
+                Thread.sleep(manager.getDelay());
                 setProgresso(i);
                 if (i == 90) {
                     testimone.sbloccaSuccessivo();

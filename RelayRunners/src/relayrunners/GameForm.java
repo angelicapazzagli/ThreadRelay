@@ -191,6 +191,8 @@ public class GameForm extends javax.swing.JFrame implements Observer{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAvviaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvviaActionPerformed
+        String scelta = (String) cmbVelocità.getSelectedItem();
+        manager.setVelocità(scelta);
         manager.startRace();
         btnAvvia.setEnabled(false);
     }//GEN-LAST:event_btnAvviaActionPerformed
