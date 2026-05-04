@@ -22,6 +22,7 @@ public class GameForm extends javax.swing.JFrame implements Observer{
         initComponents();
         btnSospendi.setEnabled(false);
         btnRiprendi.setEnabled(false);
+        btnFerma.setEnabled(false);
     }
     
     public void setCorridori(ArrayList<Corridore> corridori) {
@@ -109,6 +110,7 @@ public class GameForm extends javax.swing.JFrame implements Observer{
 
         btnFerma.setFont(new java.awt.Font("Serif", 3, 14)); // NOI18N
         btnFerma.setText("FERMA");
+        btnFerma.addActionListener(this::btnFermaActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -123,8 +125,9 @@ public class GameForm extends javax.swing.JFrame implements Observer{
                         .addComponent(lblInfo4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(bar1, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(lblInfo1, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblInfo1, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                        .addGap(6, 6, 6))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(bar3, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -150,13 +153,10 @@ public class GameForm extends javax.swing.JFrame implements Observer{
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(bar1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblInfo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(bar1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblInfo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bar2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,19 +200,31 @@ public class GameForm extends javax.swing.JFrame implements Observer{
         manager.startRace();
         btnAvvia.setEnabled(false);
         btnSospendi.setEnabled(true);
+        btnFerma.setEnabled(true);
     }//GEN-LAST:event_btnAvviaActionPerformed
 
     private void btnSospendiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSospendiActionPerformed
         manager.stop();
         btnSospendi.setEnabled(false);
         btnRiprendi.setEnabled(true);
+        btnFerma.setEnabled(false);
     }//GEN-LAST:event_btnSospendiActionPerformed
 
     private void btnRiprendiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRiprendiActionPerformed
         manager.riprendi();
         btnRiprendi.setEnabled(false);
         btnSospendi.setEnabled(true);
+        btnFerma.setEnabled(true);
     }//GEN-LAST:event_btnRiprendiActionPerformed
+
+    private void btnFermaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFermaActionPerformed
+        manager.stopCorsa();
+        manager.resetCorsa();
+        manager.attaccaObserver(this);
+        btnFerma.setEnabled(false);
+        btnSospendi.setEnabled(false);
+        btnAvvia.setEnabled(true);
+    }//GEN-LAST:event_btnFermaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

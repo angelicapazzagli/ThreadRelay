@@ -66,4 +66,31 @@ public class GameManager {
             wait();
         }
     }
+    
+    public void stopCorsa() {
+        for (Corridore c : corridori) {
+            c.interrupt();
+        }
+    }
+    
+    public void resetCorsa() {
+        Testimone nuovoTestimone = new Testimone();
+        ArrayList<Corridore> nuovaLista = new ArrayList();
+        for (Corridore c : corridori) {
+            Corridore copia = new Corridore(c, nuovoTestimone);
+            copia.setManager(this);
+            nuovaLista.add(copia);
+        }
+        corridori = nuovaLista;
+    }
+    
+    public ArrayList<Corridore> getCorridori() {
+        return corridori;
+    }
+    
+    public void attaccaObserver(Observer o) {
+        for (Corridore c : corridori) {
+            c.addObserver(o);
+        }
+    }
 }
