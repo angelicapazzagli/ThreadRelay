@@ -27,10 +27,10 @@ public class GameForm extends javax.swing.JFrame implements Observer{
     
     public void setCorridori(ArrayList<Corridore> corridori) {
         this.corridori = corridori;
-        lblInfo1.setText(lblInfo1.getText() + ": \n" + corridori.get(0).getNome());
-        lblInfo2.setText(lblInfo2.getText() + ": \n" + corridori.get(1).getNome());
-        lblInfo3.setText(lblInfo3.getText() + ": \n" + corridori.get(2).getNome());
-        lblInfo4.setText(lblInfo4.getText() + ": \n" + corridori.get(3).getNome());
+        lblInfo1.setText(corridori.get(0).getNome());
+        lblInfo2.setText(corridori.get(1).getNome());
+        lblInfo3.setText(corridori.get(2).getNome());
+        lblInfo4.setText(corridori.get(3).getNome());
     }
 
     public void setManager(GameManager manager) {
@@ -41,10 +41,10 @@ public class GameForm extends javax.swing.JFrame implements Observer{
     public void update(int numeroCorridore, int valore) {
         javax.swing.SwingUtilities.invokeLater(() -> {
             switch (numeroCorridore) {
-                case 1 -> bar1.setValue(valore);
-                case 2 -> bar2.setValue(valore);
-                case 3 -> bar3.setValue(valore);
-                case 4 -> bar4.setValue(valore);
+                case 1 -> {bar1.setValue(valore); lblInfo1.setText(corridori.get(0).getNome() + " - " + valore + "%");}
+                case 2 -> {bar2.setValue(valore); lblInfo2.setText(corridori.get(1).getNome() + " - " + valore + "%");}
+                case 3 -> {bar3.setValue(valore); lblInfo3.setText(corridori.get(2).getNome() + " - " + valore + "%");}
+                case 4 -> {bar4.setValue(valore); lblInfo4.setText(corridori.get(3).getNome() + " - " + valore + "%");}
             }
         });
     }
@@ -259,6 +259,10 @@ public class GameForm extends javax.swing.JFrame implements Observer{
         btnFerma.setEnabled(false);
         btnSospendi.setEnabled(false);
         btnAvvia.setEnabled(true);
+        lblInfo1.setText(corridori.get(0).getNome());
+        lblInfo2.setText(corridori.get(1).getNome());
+        lblInfo3.setText(corridori.get(2).getNome());
+        lblInfo4.setText(corridori.get(3).getNome());
     }//GEN-LAST:event_btnFermaActionPerformed
 
 

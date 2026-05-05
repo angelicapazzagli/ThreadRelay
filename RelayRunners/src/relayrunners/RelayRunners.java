@@ -20,10 +20,10 @@ public class RelayRunners {
         Testimone testimone = new Testimone();
         
         ArrayList<Corridore> corridori = new ArrayList<>();
-        corridori.add(new Corridore("Angelica", 1, testimone));
-        corridori.add(new Corridore("Rachele", 2, testimone));
-        corridori.add(new Corridore("Sara", 3, testimone));
-        corridori.add(new Corridore("Elena", 4, testimone));
+        corridori.add(new Corridore("RUNNER 1", 1, testimone));
+        corridori.add(new Corridore("RUNNER 2", 2, testimone));
+        corridori.add(new Corridore("RUNNER 3", 3, testimone));
+        corridori.add(new Corridore("RUNNER 4", 4, testimone));
         
         GameManager manager = new GameManager(corridori);
 
